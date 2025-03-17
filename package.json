@@ -23,6 +23,7 @@
   "scripts": {
     "start": "vite watch",
     "build": "vite build",
+    "prepare": "npm run build",
     "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
     "size": "size-limit",
