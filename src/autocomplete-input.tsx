@@ -13,6 +13,7 @@ import { useEffect, forwardRef } from "react";
 import { useAutoCompleteContext } from "./autocomplete-context";
 import { MaybeRenderProp, UseAutoCompleteReturn } from "./types";
 import { InputGroup } from "./components/ui/input-group";
+import React from "react";
 
 export interface AutoCompleteInputProps extends Omit<InputProps, "children"> {
   children?: MaybeRenderProp<{ tags: UseAutoCompleteReturn["tags"] }>;

@@ -48,7 +48,7 @@ const baseStyles: PopoverBodyProps = {
   // py: "4",
   //opacity: "0",
   px: "0px",
-  bg: "#232934",
+  bg: "inherit",
   rounded: "md",
   maxH: "350px",
   border: "none",
@@ -72,8 +72,6 @@ const AutoCompletePopoverRoot = forwardRef<
   AutoCompletePopoverProps
 >(({ children }, ref) => {
   const { isOpen, placement, autoCompleteProps } = useAutoCompleteContext();
-
-  console.log("ROOT placement:", placement, autoCompleteProps.matchWidth);
 
   return (
     <PopoverRoot
