@@ -2,7 +2,7 @@ import {
   BoxProps,
   FlexProps,
   InputProps,
-  PlacementWithLogical,
+  PopoverRootProps,
   SystemStyleObject,
 } from "@chakra-ui/react";
 import React, { Dispatch, SetStateAction } from "react";
@@ -33,6 +33,8 @@ export type UseAutoCompleteProps = Partial<{
   closeOnBlur: boolean;
   closeOnSelect: boolean;
   prefocusFirstItem: boolean;
+  clearFocusItemOnDelete: boolean;
+  clearFocusOnMouseLeave: boolean;
   creatable: boolean;
   defaultEmptyStateProps: FlexProps;
   defaultIsOpen: boolean;
@@ -80,7 +82,7 @@ export type UseAutoCompleteProps = Partial<{
   ) => void;
   onReady: (params: OnReadyProps) => void;
   openOnFocus: boolean;
-  placement: PlacementWithLogical;
+  placement: NonNullable<PopoverRootProps["positioning"]>["placement"];
   restoreOnBlurIfEmpty: boolean;
   rollNavigation: boolean;
   selectOnFocus: boolean;
@@ -132,6 +134,7 @@ export type UseAutoCompleteReturn = {
   filteredList: Item[];
   filteredResults: Item[];
   focusedValue: Item["value"];
+  setFocusedValue: React.Dispatch<any>;
   getEmptyStateProps: (component: any) => any;
   getGroupProps: (props: AutoCompleteGroupProps) => GroupReturnProps;
   getInputProps: (
@@ -142,15 +145,15 @@ export type UseAutoCompleteReturn = {
     props: AutoCompleteItemProps,
     creatable?: boolean
   ) => ItemReturnProps;
-  inputRef: React.RefObject<HTMLInputElement>;
+  inputRef: React.RefObject<HTMLInputElement | null>;
   interactionRef: React.RefObject<"mouse" | "keyboard" | null>;
   isOpen: boolean;
   isLoading: boolean;
   itemList: Item[];
-  listRef: React.RefObject<HTMLDivElement>;
+  listRef: React.RefObject<HTMLDivElement | null>;
   onClose: () => void;
   onOpen: () => void;
-  placement: PlacementWithLogical;
+  placement: NonNullable<PopoverRootProps["positioning"]>["placement"];
   query: string;
   removeItem: (valueToRemove?: Item["value"], focusInput?: boolean) => void;
   resetItems: (focusInput?: boolean) => void;

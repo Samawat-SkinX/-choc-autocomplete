@@ -1,7 +1,4 @@
-import {
-  useControllableState,
-  useDisclosure
-} from "@chakra-ui/react";
+import { useControllableState, useDisclosure } from "@chakra-ui/react";
 import {
   getFirstItem,
   getLastItem,
@@ -38,7 +35,9 @@ export function useAutoComplete(
   autoCompleteProps: AutoCompleteProps
 ): UseAutoCompleteReturn {
   let {
-    prefocusFirstItem = true,
+    prefocusFirstItem = false,
+    clearFocusItemOnDelete = false,
+    clearFocusOnMouseLeave = false,
     closeOnBlur = true,
     creatable,
     emphasize,
@@ -238,10 +237,10 @@ export function useAutoComplete(
     setValues(prevValues => {
       let item = itemList.find(opt => opt.value === itemValue);
 
-      if(!item && creatable === true) {
-        item = {label: itemValue, value: itemValue};
+      if (!item && creatable === true) {
+        item = { label: itemValue, value: itemValue };
       }
-      
+
       if (!item) {
         return prevValues;
       }
@@ -354,6 +353,13 @@ export function useAutoComplete(
             return;
           }
 
+          if (key === "Backspace") {
+            if (clearFocusItemOnDelete && focusedItem) {
+              setFocusedValue(null);
+              return;
+            }
+          }
+
           if (key === "ArrowUp") {
             if (!open) onOpen();
             else setFocusedValue(prevItem?.value);
@@ -389,7 +395,7 @@ export function useAutoComplete(
         },
         value: query,
         //variant: multiple ? "unstyled" : variant,
-        variant, 
+        variant,
         ...rest,
       },
     };
@@ -410,6 +416,7 @@ export function useAutoComplete(
       getValue = getDefItemValue,
       onClick,
       onMouseOver,
+      onMouseLeave,
       //sx,
       ...rest
     } = props;
@@ -434,6 +441,13 @@ export function useAutoComplete(
           runIfFn(onClick, e);
           if (!disabled) selectItem(value);
           else inputRef.current?.focus();
+        },
+        onMouseLeave: e => {
+          runIfFn(onMouseLeave, e);
+          if (clearFocusOnMouseLeave && focusedValue) {
+            setFocusedValue(null);
+            interactionRef.current = "mouse";
+          }
         },
         onMouseOver: e => {
           runIfFn(onMouseOver, e);
@@ -494,6 +508,7 @@ export function useAutoComplete(
     filteredList,
     filteredResults,
     focusedValue,
+    setFocusedValue,
     defaultEmptyStateProps,
     getEmptyStateProps,
     getGroupProps,
