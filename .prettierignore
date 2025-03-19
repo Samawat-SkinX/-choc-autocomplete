@@ -1,0 +1,10 @@
+# Ignore artifacts:
+dist
+coverage
+.huskey
+src/assets/icons
+cloudbuild.yaml
+Dockerfile
+compose.yaml
+.github
+README.md

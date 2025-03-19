@@ -109,7 +109,7 @@ export function pick<T extends Dict, K extends keyof T>(
 ): { [P in K]: T[P] } {
   const result = {} as { [P in K]: T[P] };
 
-  keys.forEach(key => {
+  keys.forEach((key) => {
     if (key in object) {
       result[key] = object[key];
     }
@@ -124,7 +124,7 @@ export function omit<T extends Dict, K extends keyof T>(
 ): Omit<T, K> {
   const result = { ...object };
 
-  keys.forEach(key => {
+  keys.forEach((key) => {
     delete result[key];
   });
 
@@ -148,37 +148,37 @@ export function runIfFn<T, Args extends unknown[]>(
   return isFunction(valueOrFn) ? valueOrFn(...args) : valueOrFn;
 }
 
-import { useMemo } from "react"
+import { useMemo } from "react";
 
-export type ReactRef<T> = React.RefCallback<T> | React.MutableRefObject<T>
+export type ReactRef<T> = React.RefCallback<T> | React.MutableRefObject<T>;
 
 export function assignRef<T = any>(
   ref: ReactRef<T> | null | undefined,
-  value: T,
+  value: T
 ) {
-  if (ref == null) return
+  if (ref == null) return;
 
   if (typeof ref === "function") {
-    ref(value)
-    return
+    ref(value);
+    return;
   }
 
   try {
-    ref.current = value
+    ref.current = value;
   } catch (error) {
-    throw new Error(`Cannot assign value '${value}' to ref '${ref}'`)
+    throw new Error(`Cannot assign value '${value}' to ref '${ref}'`);
   }
 }
 
 export function mergeRefs<T>(...refs: (ReactRef<T> | null | undefined)[]) {
   return (node: T | null) => {
     refs.forEach((ref) => {
-      assignRef(ref, node)
-    })
-  }
+      assignRef(ref, node);
+    });
+  };
 }
 
 export function useMergeRefs<T>(...refs: (ReactRef<T> | null | undefined)[]) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  return useMemo(() => mergeRefs(...refs), refs)
+  return useMemo(() => mergeRefs(...refs), refs);
 }
