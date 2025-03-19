@@ -15,7 +15,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ark-ui/react@npm:4.9.2, @ark-ui/react@npm:^4.9.2":
+"@ark-ui/react@npm:4.9.2":
   version: 4.9.2
   resolution: "@ark-ui/react@npm:4.9.2"
   dependencies:
@@ -2701,7 +2701,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@skinx/chakra-autocomplete@workspace:."
   dependencies:
-    "@ark-ui/react": "npm:^4.9.2"
     "@babel/core": "npm:^7.26.10"
     "@chakra-ui/react": "npm:^3.13.0"
     "@emotion/react": "npm:^11.14.0"
@@ -2730,7 +2729,6 @@ __metadata:
     vite-plugin-linter: "npm:^3.0.1"
     vite-tsconfig-paths: "npm:^5.1.4"
   peerDependencies:
-    "@ark-ui/react": ^4.9.2
     "@chakra-ui/react": ^3.13.0
     "@emotion/react": ^11.14.0
     react: ^19.0.0

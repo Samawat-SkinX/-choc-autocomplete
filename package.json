@@ -31,7 +31,6 @@
     "analyze": "size-limit --why"
   },
   "peerDependencies": {
-    "@ark-ui/react": "^4.9.2",
     "@chakra-ui/react": "^3.13.0",
     "@emotion/react": "^11.14.0",
     "react": "^19.0.0"
@@ -68,7 +67,6 @@
     }
   ],
   "devDependencies": {
-    "@ark-ui/react": "^4.9.2",
     "@babel/core": "^7.26.10",
     "@chakra-ui/react": "^3.13.0",
     "@emotion/react": "^11.14.0",
