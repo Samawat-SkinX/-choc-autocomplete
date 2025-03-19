@@ -1,10 +1,4 @@
-import {
-  Box,
-  Button,
-  Center,
-  Field, 
-  Heading,
-} from "@chakra-ui/react";
+import { Box, Button, Center, Field, Heading } from "@chakra-ui/react";
 import * as React from "react";
 import {
   AutoComplete,
@@ -31,7 +25,7 @@ function ReactHookFormExample() {
   const value = watch("team");
 
   const { onBlur, name } = register("team");
-  const onSubmit = data => console.log("data from form", data);
+  const onSubmit = (data) => console.log("data from form", data);
 
   return (
     <Box border="1px" borderRadius="1em" p={2}>
@@ -45,7 +39,7 @@ function ReactHookFormExample() {
         <Field.Root>
           <Field.Label>Olympics Soccer Winner</Field.Label>
           <AutoComplete
-            onChange={val => setValue("team", val)}
+            onChange={(val) => setValue("team", val)}
             openOnFocus
             rollNavigation
             listAllValuesOnFocus
@@ -55,7 +49,7 @@ function ReactHookFormExample() {
             <AutoCompleteInput variant="subtle" name={name} onBlur={onBlur} />
             <AutoCompleteList>
               <AutoCompleteGroup>
-                {options.map(option => (
+                {options.map((option) => (
                   <AutoCompleteItem
                     key={`option-${option.value}`}
                     value={{

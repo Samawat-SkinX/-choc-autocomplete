@@ -19,7 +19,7 @@
     "declarationMap": true,
     "baseUrl": ".",
     "paths": {
-      "@choc-ui/chakra-autocomplete": ["src/components/index.tsx"]
+      "@skinx/chakra-autocomplete": ["src/components/index.tsx"]
     },
     "typeRoots": ["node_modules/@types", "src/components/index.d.ts"]
   }

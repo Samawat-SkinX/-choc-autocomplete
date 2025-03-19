@@ -5,11 +5,7 @@ import {
   AutoCompleteItem,
   AutoCompleteList,
 } from "@choc-ui/chakra-autocomplete";
-import {
-  Icon,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Icon, Stack, Text } from "@chakra-ui/react";
 import { InputGroup } from "./components/ui/input-group";
 
 export default function App() {
@@ -29,8 +25,8 @@ export default function App() {
   const startElementProps = {
     pointerEvents: "none",
     color: "inherit",
-    fontSize: "1.2em"
-  }
+    fontSize: "1.2em",
+  };
   return (
     <Stack direction="column">
       <Text>With Icon </Text>

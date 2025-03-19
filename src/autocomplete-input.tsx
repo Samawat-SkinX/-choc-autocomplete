@@ -21,15 +21,22 @@ export interface AutoCompleteInputProps extends Omit<InputProps, "children"> {
   loadingIcon?: React.ReactNode;
 }
 
-const AutoCompleteInputComponent = forwardRef<HTMLInputElement, AutoCompleteInputProps>((props, forwardedRef) => {
+const AutoCompleteInputComponent = forwardRef<
+  HTMLInputElement,
+  AutoCompleteInputProps
+>((props, forwardedRef) => {
   const { isLoading } = useAutoCompleteContext();
   const { loadingIcon, ...restProps } = props;
 
-  const inputProps = omit(restProps, ['children', 'wrapStyles', 'hidePlaceholder']);
+  const inputProps = omit(restProps, [
+    "children",
+    "wrapStyles",
+    "hidePlaceholder",
+  ]);
 
   const inputElement = <Input {...inputProps} ref={forwardedRef} />;
 
-  if(isLoading) {
+  if (isLoading) {
     return (
       <InputGroup endElement={loadingIcon || <Spinner />}>
         {inputElement}
@@ -40,87 +47,81 @@ const AutoCompleteInputComponent = forwardRef<HTMLInputElement, AutoCompleteInpu
   return inputElement;
 });
 
-export const AutoCompleteInput = forwardRef<HTMLInputElement, AutoCompleteInputProps>(
-  (props, forwardedRef) => {
-    const {
-      autoCompleteProps,
-      inputRef,
-      getInputProps,
-      tags,
-      setQuery,
-      value,
-      itemList,
-    } = useAutoCompleteContext();
+export const AutoCompleteInput = forwardRef<
+  HTMLInputElement,
+  AutoCompleteInputProps
+>((props, forwardedRef) => {
+  const {
+    autoCompleteProps,
+    inputRef,
+    getInputProps,
+    tags,
+    setQuery,
+    value,
+    itemList,
+  } = useAutoCompleteContext();
 
-    // const ref = useMergeRefs(forwardedRef, inputRef);
+  // const ref = useMergeRefs(forwardedRef, inputRef);
 
-    const {
-      children: childrenProp,
-      hidePlaceholder,
-      ...rest
-    } = props;
+  const { children: childrenProp, hidePlaceholder, ...rest } = props;
 
-    const { value: inputValue } = rest;
+  const { value: inputValue } = rest;
 
-    useEffect(() => {
-      if (
-        value !== undefined &&
-        (typeof value === "string" || value instanceof String)
-      ) {
-        const item = itemList.find(l => l.value === value);
+  useEffect(() => {
+    if (
+      value !== undefined &&
+      (typeof value === "string" || value instanceof String)
+    ) {
+      const item = itemList.find((l) => l.value === value);
 
-        const newQuery = item === undefined ? value : item.label;
+      const newQuery = item === undefined ? value : item.label;
 
-        setQuery(newQuery);
-      }
-    }, [value]);
-
-    useEffect(() => {
-      if (
-        inputValue !== undefined &&
-        (typeof inputValue === "string" || inputValue instanceof String)
-      ) {
-        setQuery(inputValue);
-      }
-    }, [inputValue]);
-
-    const themeInput: any = {};//useMultiStyleConfig("Input", props);
-
-    let { wrapper, input: inputProps } = getInputProps(rest, themeInput);
-    const { ref: wrapperRef, ...wrapperProps } = wrapper;
-    const ref = useMergeRefs(forwardedRef, inputRef);
-
-    const children = runIfFn(childrenProp, { tags });
-    if (hidePlaceholder) {
-      inputProps = {
-        ...inputProps,
-        placeholder:
-          Array.isArray(children) && children.length
-            ? undefined
-            : inputProps.placeholder,
-      };
+      setQuery(newQuery);
     }
+  }, [value]);
 
-    const simpleInput = (
-      <AutoCompleteInputComponent
-        {...(inputProps as any)}
-        ref={ref}
-      />
-    );
+  useEffect(() => {
+    if (
+      inputValue !== undefined &&
+      (typeof inputValue === "string" || inputValue instanceof String)
+    ) {
+      setQuery(inputValue);
+    }
+  }, [inputValue]);
 
-    const multipleInput = (
-      <Box {...wrapperProps} ref={wrapperRef}>
-        {children}
-        {simpleInput}
-      </Box>
-    );
+  const themeInput: any = {}; //useMultiStyleConfig("Input", props);
 
-    return (
-      <PopoverAnchor>
-        {autoCompleteProps.multiple ? multipleInput : simpleInput}
-      </PopoverAnchor>
-    );
+  let { wrapper, input: inputProps } = getInputProps(rest, themeInput);
+  const { ref: wrapperRef, ...wrapperProps } = wrapper;
+  const ref = useMergeRefs(forwardedRef, inputRef);
+
+  const children = runIfFn(childrenProp, { tags });
+  if (hidePlaceholder) {
+    inputProps = {
+      ...inputProps,
+      placeholder:
+        Array.isArray(children) && children.length
+          ? undefined
+          : inputProps.placeholder,
+    };
   }
-);
+
+  const simpleInput = (
+    <AutoCompleteInputComponent {...(inputProps as any)} ref={ref} />
+  );
+
+  const multipleInput = (
+    <Box {...wrapperProps} ref={wrapperRef}>
+      {children}
+      {simpleInput}
+    </Box>
+  );
+
+  return (
+    <PopoverAnchor>
+      {autoCompleteProps.multiple ? multipleInput : simpleInput}
+    </PopoverAnchor>
+  );
+});
 
 AutoCompleteInput.displayName = "Input";

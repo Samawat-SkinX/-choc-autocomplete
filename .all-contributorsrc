@@ -1,7 +1,5 @@
 {
-  "files": [
-    "README.md"
-  ],
+  "files": ["README.md"],
   "imageSize": 100,
   "commit": false,
   "contributors": [
@@ -10,198 +8,147 @@
       "name": "Abraham",
       "avatar_url": "https://avatars.githubusercontent.com/u/30869823?v=4",
       "profile": "https://anubra266.tk",
-      "contributions": [
-        "code"
-      ]
+      "contributions": ["code"]
     },
     {
       "login": "margalit",
       "name": "Sam Margalit",
       "avatar_url": "https://avatars.githubusercontent.com/u/2268424?v=4",
       "profile": "http://margalit.com.au",
-      "contributions": [
-        "doc"
-      ]
+      "contributions": ["doc"]
     },
     {
       "login": "gepd",
       "name": "gepd",
       "avatar_url": "https://avatars.githubusercontent.com/u/7091609?v=4",
       "profile": "https://github.com/gepd",
-      "contributions": [
-        "code",
-        "bug"
-      ]
+      "contributions": ["code", "bug"]
     },
     {
       "login": "SpencerKaiser",
       "name": "Spencer Kaiser",
       "avatar_url": "https://avatars.githubusercontent.com/u/6445731?v=4",
       "profile": "https://www.linkedin.com/in/spencerkaiser",
-      "contributions": [
-        "doc"
-      ]
+      "contributions": ["doc"]
     },
     {
       "login": "jcdogo",
       "name": "jcdogo",
       "avatar_url": "https://avatars.githubusercontent.com/u/70533701?v=4",
       "profile": "https://github.com/jcdogo",
-      "contributions": [
-        "code"
-      ]
+      "contributions": ["code"]
     },
     {
       "login": "daliudzius",
       "name": "daliudzius",
       "avatar_url": "https://avatars.githubusercontent.com/u/46355846?v=4",
       "profile": "https://github.com/daliudzius",
-      "contributions": [
-        "code"
-      ]
+      "contributions": ["code"]
     },
     {
       "login": "fabien0102",
       "name": "Fabien BERNARD",
       "avatar_url": "https://avatars.githubusercontent.com/u/1761469?v=4",
       "profile": "https://fabien0102.com",
-      "contributions": [
-        "code"
-      ]
-    }, 
+      "contributions": ["code"]
+    },
     {
       "login": "Richi2293",
       "name": "Riccardo Lorenzi",
       "avatar_url": "https://avatars.githubusercontent.com/u/5848941?v=4",
       "profile": "https://riccardolorenzi.com/",
-      "contributions": [
-        "bug"
-      ]
-    }, 
+      "contributions": ["bug"]
+    },
     {
       "login": "MathisFederico",
       "name": "Mathis Federico",
       "avatar_url": "https://avatars.githubusercontent.com/u/60117466?v=4",
       "profile": "https://github.com/MathisFederico",
-      "contributions": [
-        "bug"
-      ]
-    }, 
+      "contributions": ["bug"]
+    },
     {
       "login": "Kysluss",
       "name": "Kyle Slusser",
       "avatar_url": "https://avatars.githubusercontent.com/u/29052043?v=4",
       "profile": "https://github.com/Kysluss",
-      "contributions": [
-        "bug", 
-        "code", 
-        "doc"
-      ]
-    }, 
+      "contributions": ["bug", "code", "doc"]
+    },
     {
       "login": "sakerhetspolisen",
       "name": "Karl F. Sellergren",
       "avatar_url": "https://avatars.githubusercontent.com/u/68159964?v=4",
       "profile": "https://github.com/sakerhetspolisen",
-      "contributions": [
-        "bug"
-      ]
-    }, 
+      "contributions": ["bug"]
+    },
     {
       "login": "JedBh",
       "name": "Jedediah Benhod",
       "avatar_url": "https://avatars.githubusercontent.com/u/44101778?v=4",
       "profile": "https://github.com/JedBh",
-      "contributions": [
-        "bug"
-      ]
-    }, 
+      "contributions": ["bug"]
+    },
     {
       "login": "Janekk",
       "name": "Janusz Kacalak",
       "avatar_url": "https://avatars.githubusercontent.com/u/6827881?v=4",
       "profile": "https://github.com/Janekk",
-      "contributions": [
-        "bug"
-      ]
-    }, 
+      "contributions": ["bug"]
+    },
     {
       "login": "ThomasHickman",
       "name": "Thomas Hickman",
       "avatar_url": "https://avatars.githubusercontent.com/u/6304200?v=4",
       "profile": "https://github.com/ThomasHickman",
-      "contributions": [
-        "bug"
-      ]
-    }, 
+      "contributions": ["bug"]
+    },
     {
       "login": "chrisregner",
       "name": "Christopher Regner",
       "avatar_url": "https://avatars.githubusercontent.com/u/26005158?v=4",
       "profile": "https://github.com/chrisregner",
-      "contributions": [
-        "code", 
-        "doc"
-      ]
-    }, 
+      "contributions": ["code", "doc"]
+    },
     {
       "login": "EinarSnorrason",
       "name": "EinarSnorrason",
       "avatar_url": "https://avatars.githubusercontent.com/u/31321506?v=4",
       "profile": "https://github.com/EinarSnorrason",
-      "contributions": [
-        "code", 
-        "bug"
-      ]
-    }, 
+      "contributions": ["code", "bug"]
+    },
     {
       "login": "gbermudez1992",
       "name": "Gustavo Bermúdez",
       "avatar_url": "https://avatars.githubusercontent.com/u/84212735?v=4",
       "profile": "https://github.com/gbermudez1992",
-      "contributions": [
-        "code", 
-        "bug"
-      ]
-    }, 
+      "contributions": ["code", "bug"]
+    },
     {
       "login": "ido213",
       "name": "ido213",
       "avatar_url": "https://avatars.githubusercontent.com/u/163876909?v=4",
       "profile": "https://github.com/ido213",
-      "contributions": [
-        "code", 
-        "bug"
-      ]
-    }, 
+      "contributions": ["code", "bug"]
+    },
     {
       "login": "aeons",
       "name": "Bjørn Madsen",
       "avatar_url": "https://avatars.githubusercontent.com/u/1432894?v=4",
       "profile": "https://github.com/aeons",
-      "contributions": [
-        "code", 
-        "bug"
-      ]
-    }, 
+      "contributions": ["code", "bug"]
+    },
     {
       "login": "SupremeTechnopriest",
       "name": "Randy Lebeau",
       "avatar_url": "https://avatars.githubusercontent.com/u/2261598?v=4",
       "profile": "https://github.com/SupremeTechnopriest",
-      "contributions": [
-        "bug"
-      ]
-    }, 
+      "contributions": ["bug"]
+    },
     {
       "login": "jayveebustarde",
       "name": "Jayvee Bustarde",
       "avatar_url": "https://avatars.githubusercontent.com/u/26862076?v=4",
       "profile": "https://github.com/jayveebustarde",
-      "contributions": [
-        "code", 
-        "bug"
-      ]
+      "contributions": ["code", "bug"]
     }
   ],
   "contributorsPerLine": 7,

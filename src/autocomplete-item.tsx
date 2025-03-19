@@ -19,11 +19,8 @@ export const AutoCompleteItem = forwardRef<
   HTMLDivElement,
   AutoCompleteItemProps
 >((props, forwardedRef) => {
-  const {
-    focusedValue,
-    getItemProps,
-    interactionRef,
-  } = useAutoCompleteContext();
+  const { focusedValue, getItemProps, interactionRef } =
+    useAutoCompleteContext();
   const itemRef = useRef<any>(null);
   const ref = useMergeRefs(forwardedRef, itemRef);
 

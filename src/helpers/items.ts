@@ -31,7 +31,7 @@ export const getItemList = (children: ReactNode): Item[] => {
     (child: any) => child?.type?.displayName === "AutoCompleteItem"
   );
 
-  return itemChildren.map(item => {
+  return itemChildren.map((item) => {
     const itemObj = pick(item.props, ["value", "label", "fixed", "disabled"]);
     const { getValue = getDefItemValue } = item.props;
     const value = getValue(itemObj.value);

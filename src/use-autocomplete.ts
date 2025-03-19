@@ -102,7 +102,7 @@ export function useAutoComplete(
         ? itemList
         : itemList
             .filter(
-              i =>
+              (i) =>
                 i.fixed ||
                 runIfFn(
                   autoCompleteProps.filter || defaultFilterMethod,
@@ -127,13 +127,13 @@ export function useAutoComplete(
     return [...filteredResults, ...creatableArr];
   }, [filteredResults, creatableArr]);
   const [values, setValues] = useControllableState({
-    defaultValue: defaultValues.map(v => v?.toString()),
+    defaultValue: defaultValues.map((v) => v?.toString()),
     value: valuesProp,
     onChange: (newValues: any[]) => {
-      const item = filteredList.find(opt => opt.value === newValues[0]);
+      const item = filteredList.find((opt) => opt.value === newValues[0]);
       if (!item) return;
-      const items = newValues.map(val =>
-        filteredList.find(opt => opt.value === val)
+      const items = newValues.map((val) =>
+        filteredList.find((opt) => opt.value === val)
       ) as Item[];
       runIfFn(
         autoCompleteProps.onChange,
@@ -155,7 +155,7 @@ export function useAutoComplete(
 
   const maxSelections = autoCompleteProps.maxSelections || values.length + 1;
 
-  const focusedIndex = filteredList.findIndex(i => i.value === focusedValue);
+  const focusedIndex = filteredList.findIndex((i) => i.value === focusedValue);
   const nextItem = getNextItem(
     focusedIndex,
     filteredList,
@@ -170,7 +170,7 @@ export function useAutoComplete(
   const lastItem = getLastItem(filteredList);
 
   const isFocusedValueNotInList = !filteredList.some(
-    i => i.value === focusedValue
+    (i) => i.value === focusedValue
   );
 
   useEffect(() => {
@@ -193,7 +193,7 @@ export function useAutoComplete(
   }, [open, listAllValuesOnFocus, setListAll]);
 
   useEffect(() => {
-    const focusedItem = itemList.find(i => i.value === focusedValue);
+    const focusedItem = itemList.find((i) => i.value === focusedValue);
     runIfFn(autoCompleteProps.onOptionFocus, {
       item: focusedItem!,
       focusMethod: interactionRef.current,
@@ -202,13 +202,13 @@ export function useAutoComplete(
   }, [focusedValue, autoCompleteProps.onOptionFocus]);
 
   const selectItem = (optionValue: Item["value"]) => {
-    const option = filteredList.find(i => i.value === optionValue);
+    const option = filteredList.find((i) => i.value === optionValue);
 
     const optionLabel = option?.label || option?.value;
-    setQuery(() => (multiple ? "" : optionLabel ?? ""));
+    setQuery(() => (multiple ? "" : (optionLabel ?? "")));
 
     if (!values.includes(optionValue) && values.length < maxSelections) {
-      setValues(v => (multiple ? [...v, optionValue] : [optionValue]));
+      setValues((v) => (multiple ? [...v, optionValue] : [optionValue]));
     }
 
     if (multiple) {
@@ -234,8 +234,8 @@ export function useAutoComplete(
     itemValue,
     focusInput
   ) => {
-    setValues(prevValues => {
-      let item = itemList.find(opt => opt.value === itemValue);
+    setValues((prevValues) => {
+      let item = itemList.find((opt) => opt.value === itemValue);
 
       if (!item && creatable === true) {
         item = { label: itemValue, value: itemValue };
@@ -246,10 +246,10 @@ export function useAutoComplete(
       }
 
       runIfFn(autoCompleteProps.onTagRemoved, itemValue, item, prevValues);
-      return prevValues.filter(i => i !== itemValue);
+      return prevValues.filter((i) => i !== itemValue);
     });
 
-    const item = itemList.find(opt => opt.value === itemValue);
+    const item = itemList.find((opt) => opt.value === itemValue);
     const itemLabel = item?.label || item?.value;
 
     if (query === itemLabel) setQuery("");
@@ -262,9 +262,9 @@ export function useAutoComplete(
   };
 
   const tags = multiple
-    ? values.map(tag => ({
+    ? values.map((tag) => ({
         label:
-          itemList.find(item => item.value === tag?.toString())?.label || tag,
+          itemList.find((item) => item.value === tag?.toString())?.label || tag,
         onRemove: () => removeItem(tag),
       }))
     : [];
@@ -291,13 +291,13 @@ export function useAutoComplete(
       },
       input: {
         isReadOnly,
-        onFocus: e => {
+        onFocus: (e) => {
           runIfFn(onFocus, e);
           if (autoCompleteProps.openOnFocus && !isReadOnly) onOpen();
           if (autoCompleteProps.selectOnFocus) e.target.select();
           if (listAllValuesOnFocus) setListAll(true);
         },
-        onBlur: e => {
+        onBlur: (e) => {
           runIfFn(onBlur, e);
 
           const listIsFocused =
@@ -311,7 +311,7 @@ export function useAutoComplete(
             if (!values.includes(e.target.value) && restoreOnBlurIfEmpty) {
               const latestValue = getLastItem(values);
               const latestValueItem = itemList.find(
-                i => i.value === latestValue
+                (i) => i.value === latestValue
               );
               const latestValueLabel =
                 latestValueItem?.label || latestValueItem?.value || "";
@@ -319,7 +319,7 @@ export function useAutoComplete(
             }
           }
         },
-        onChange: e => {
+        onChange: (e) => {
           const newValue = e.target.value;
           runIfFn(onChange, e);
           setQuery(newValue);
@@ -332,7 +332,7 @@ export function useAutoComplete(
           else onClose();
           setListAll(false);
         },
-        onKeyDown: e => {
+        onKeyDown: (e) => {
           runIfFn(onKeyDown, e);
           interactionRef.current = "keyboard";
 
@@ -423,7 +423,7 @@ export function useAutoComplete(
     const value = creatable ? valueProp : getValue(valueProp)?.toString();
     const isFocused = value === focusedValue;
     const isValidSuggestion =
-      filteredList.findIndex(i => i.value === value) >= 0;
+      filteredList.findIndex((i) => i.value === value) >= 0;
     const itemLabel = itemChild || label || value;
     return {
       item: {
@@ -437,19 +437,19 @@ export function useAutoComplete(
         "aria-selected": values.includes(value),
         "aria-disabled": disabled,
         _disabled: { opacity: 0.4, cursor: "not-allowed", userSelect: "none" },
-        onMouseDown: e => {
+        onMouseDown: (e) => {
           runIfFn(onClick, e);
           if (!disabled) selectItem(value);
           else inputRef.current?.focus();
         },
-        onMouseLeave: e => {
+        onMouseLeave: (e) => {
           runIfFn(onMouseLeave, e);
           if (clearFocusOnMouseLeave && focusedValue) {
             setFocusedValue(null);
             interactionRef.current = "mouse";
           }
         },
-        onMouseOver: e => {
+        onMouseOver: (e) => {
           runIfFn(onMouseOver, e);
           setFocusedValue(value);
           interactionRef.current = "mouse";
@@ -477,14 +477,14 @@ export function useAutoComplete(
     };
   };
 
-  const getGroupProps: UseAutoCompleteReturn["getGroupProps"] = props => {
+  const getGroupProps: UseAutoCompleteReturn["getGroupProps"] = (props) => {
     const hasItems = hasChildren(props.children, filteredList);
     return {
       divider: {
         hasFirstChild: hasFirstItem(props.children, firstItem),
         hasLastChild: hasLastItem(
           props.children,
-          getLastItem(filteredList.filter(i => isUndefined(i?.noFilter)))
+          getLastItem(filteredList.filter((i) => isUndefined(i?.noFilter)))
         ),
       },
       group: {
@@ -493,8 +493,10 @@ export function useAutoComplete(
     };
   };
 
-  const getEmptyStateProps: UseAutoCompleteReturn["getEmptyStateProps"] = defaultEmptyState => {
-    const noSuggestions = filteredList.every(i => i.noFilter);
+  const getEmptyStateProps: UseAutoCompleteReturn["getEmptyStateProps"] = (
+    defaultEmptyState
+  ) => {
+    const noSuggestions = filteredList.every((i) => i.noFilter);
     if (noSuggestions && emptyState && !creatable) {
       return typeof emptyState === "boolean"
         ? defaultEmptyState
