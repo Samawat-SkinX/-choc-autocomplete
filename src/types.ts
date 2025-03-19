@@ -35,6 +35,7 @@ export type UseAutoCompleteProps = Partial<{
   prefocusFirstItem: boolean;
   clearFocusItemOnDelete: boolean;
   clearFocusOnMouseLeave: boolean;
+  blurOnPartialSearchEnter: boolean;
   creatable: boolean;
   defaultEmptyStateProps: FlexProps;
   defaultIsOpen: boolean;

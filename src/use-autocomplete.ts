@@ -38,6 +38,7 @@ export function useAutoComplete(
     prefocusFirstItem = false,
     clearFocusItemOnDelete = false,
     clearFocusOnMouseLeave = false,
+    blurOnPartialSearchEnter = false,
     closeOnBlur = true,
     creatable,
     emphasize,
@@ -341,7 +342,7 @@ export function useAutoComplete(
           if (["Enter", ...submitKeys].includes(key)) {
             if (focusedItem && !focusedItem?.disabled && open)
               selectItem(focusedItem?.value);
-            else inputRef.current?.focus();
+            else if (!blurOnPartialSearchEnter) inputRef.current?.focus();
             e.preventDefault();
             return;
           }
@@ -390,6 +391,7 @@ export function useAutoComplete(
 
           if (key === "Escape") {
             onClose();
+            e.currentTarget.blur();
             e.preventDefault();
           }
         },
@@ -460,7 +462,7 @@ export function useAutoComplete(
             color: "inherit",
             bg: "transparent",
             ...(isObject(emphasize)
-              ? emphasize
+              ? (emphasize as object)
               : {
                   fontWeight: emphasize ? "extrabold" : "inherit",
                 }),
