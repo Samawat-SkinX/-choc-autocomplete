@@ -499,11 +499,14 @@ export function useAutoComplete(
     defaultEmptyState
   ) => {
     const noSuggestions = filteredList.every((i) => i.noFilter);
+    let emptyStateReturn = defaultEmptyState;
     if (noSuggestions && emptyState && !creatable) {
-      return typeof emptyState === "boolean"
-        ? defaultEmptyState
-        : runIfFn(emptyState, { query });
+      emptyStateReturn =
+        typeof emptyState === "boolean"
+          ? defaultEmptyState
+          : runIfFn(emptyState, { query });
     }
+    return { emptyState: emptyStateReturn, noSuggestions };
   };
 
   return {

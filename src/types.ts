@@ -136,7 +136,10 @@ export type UseAutoCompleteReturn = {
   filteredResults: Item[];
   focusedValue: Item["value"];
   setFocusedValue: React.Dispatch<any>;
-  getEmptyStateProps: (component: any) => any;
+  getEmptyStateProps: (component: any) => {
+    emptyState: any;
+    noSuggestions: boolean;
+  };
   getGroupProps: (props: AutoCompleteGroupProps) => GroupReturnProps;
   getInputProps: (
     props: AutoCompleteInputProps,
