@@ -4,7 +4,7 @@ import {
   AutoComplete,
   AutoCompleteInput,
   AutoCompleteItem,
-  AutoCompleteList
+  AutoCompleteList,
 } from "../../src/index";
 import { nanoid } from "nanoid";
 
@@ -13,36 +13,36 @@ export function makeId() {
 }
 
 export default function App() {
-  const { placeholder, defaultKeyword, queryKeyword, onSearch }:any = {
+  const { placeholder, defaultKeyword, queryKeyword, onSearch }: any = {
     placeholder: "search",
     defaultKeyword: [],
-    queryKeyword: (text:any) => {
-      console.log("input change",text);
+    queryKeyword: (text: any) => {
+      console.log("input change", text);
       return new Promise((relove) => {
         relove([{ id: makeId(), label: text, value: text }]);
       });
     },
-    onSearch: (text:any) => {
-      console.log("select change",text);
-    }
+    onSearch: (text: any) => {
+      console.log("select change", text);
+    },
   };
 
   const [options, setOptions] = React.useState(
-    defaultKeyword.map((i:any) => ({ ...i, disabled: false }))
+    defaultKeyword.map((i: any) => ({ ...i, disabled: false }))
   );
 
-  function changeOptions(options:any) {
-    setOptions(options.map((i:any) => ({ ...i, disabled: false })));
+  function changeOptions(options: any) {
+    setOptions(options.map((i: any) => ({ ...i, disabled: false })));
   }
 
-  function onInputChange(event:any) {
+  function onInputChange(event: any) {
     const searchText = event.target.value;
     if (searchText.length) {
       queryKeyword(searchText)
-        .then((result:any) => {
+        .then((result: any) => {
           changeOptions(result);
         })
-        .catch((_:any) => {
+        .catch((_: any) => {
           changeOptions([]);
         });
     } else {
@@ -50,12 +50,11 @@ export default function App() {
     }
   }
 
-  function onSelectChange(val:any) {
+  function onSelectChange(val: any) {
     if (typeof val === "string") {
       onSearch(val);
     }
   }
-
 
   return (
     <Flex
@@ -78,7 +77,7 @@ export default function App() {
           onChange={onInputChange}
         />
         <AutoCompleteList>
-          {options.map(({ label, value, id }:any) => (
+          {options.map(({ label, value, id }: any) => (
             <AutoCompleteItem
               key={`option-${id}`}
               textTransform="capitalize"

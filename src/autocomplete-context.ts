@@ -1,9 +1,8 @@
 import * as React from "react";
 import { UseAutoCompleteReturn } from "./types";
 
-export const [AutoCompleteProvider, useAutoCompleteContext] = createContext<
-  UseAutoCompleteReturn
->();
+export const [AutoCompleteProvider, useAutoCompleteContext] =
+  createContext<UseAutoCompleteReturn>();
 
 type CreateContextReturn<T> = [React.Provider<T>, () => T, React.Context<T>];
 
@@ -27,7 +26,9 @@ export function createContext<ContextType>() {
     return context;
   }
 
-  return [Context.Provider, useContext, Context] as CreateContextReturn<
-    ContextType
-  >;
+  return [
+    Context.Provider,
+    useContext,
+    Context,
+  ] as CreateContextReturn<ContextType>;
 }

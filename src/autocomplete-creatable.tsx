@@ -14,12 +14,8 @@ interface AutoCompleteCreatableProps extends Omit<FlexProps, "children"> {
 
 export function AutoCompleteCreatable(props: AutoCompleteCreatableProps) {
   const { alwaysDisplay, children: childrenProp, ...rest } = props;
-  const {
-    autoCompleteProps,
-    getItemProps,
-    query,
-    filteredResults,
-  } = useAutoCompleteContext();
+  const { autoCompleteProps, getItemProps, query, filteredResults } =
+    useAutoCompleteContext();
 
   const { children, ...itemProps } = getItemProps(
     {
@@ -32,7 +28,7 @@ export function AutoCompleteCreatable(props: AutoCompleteCreatableProps) {
     true
   ).item;
 
-  const queryExistsInList = filteredResults.some(i => i.value === query);
+  const queryExistsInList = filteredResults.some((i) => i.value === query);
   const showWhenEmpty = isEmpty(query) ? alwaysDisplay : true;
   const showCreatable =
     autoCompleteProps.creatable && showWhenEmpty && !queryExistsInList;
