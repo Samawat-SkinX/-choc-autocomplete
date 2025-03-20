@@ -8,18 +8,19 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "declaration": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
+    "declaration": true,
     "declarationMap": true,
+    "declarationDir": "dist",
+    "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "@choc-ui/chakra-autocomplete": ["src/components/index.tsx"]
+      "@/*": ["src/*"]
     },
     "typeRoots": ["node_modules/@types", "src/components/index.d.ts"]
   }
