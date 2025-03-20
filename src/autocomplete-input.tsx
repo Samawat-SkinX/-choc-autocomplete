@@ -118,11 +118,7 @@ export const AutoCompleteInput = forwardRef<
     </Box>
   );
 
-  return (
-    <PopoverAnchor>
-      {autoCompleteProps.multiple ? multipleInput : simpleInput}
-    </PopoverAnchor>
-  );
+  return autoCompleteProps.multiple ? multipleInput : simpleInput;
 });
 
 AutoCompleteInput.displayName = "Input";
