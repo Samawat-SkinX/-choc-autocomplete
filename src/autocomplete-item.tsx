@@ -1,9 +1,7 @@
+import { useEffect, useRef, forwardRef, ReactNode } from "react";
 import { SystemStyleObject, Flex, FlexProps } from "@chakra-ui/react";
 import { isUndefined, omit, useMergeRefs } from "./utils";
-import { useEffect, useRef, forwardRef } from "react";
-
 import { useAutoCompleteContext } from "./autocomplete-context";
-import React from "react";
 
 export interface AutoCompleteItemProps extends FlexProps {
   value: any;
@@ -12,6 +10,7 @@ export interface AutoCompleteItemProps extends FlexProps {
   _focus?: SystemStyleObject | any;
   disabled?: boolean;
   _fixed?: SystemStyleObject;
+  icon?: ReactNode;
   getValue?: (item: AutoCompleteItemProps["value"]) => any;
 }
 
@@ -54,7 +53,10 @@ export const AutoCompleteItem = forwardRef<
       {children ? (
         children
       ) : (
-        <span dangerouslySetInnerHTML={dangerouslySetInnerHTML} />
+        <>
+          <span dangerouslySetInnerHTML={dangerouslySetInnerHTML} />
+          {props.icon ? props.icon : null}
+        </>
       )}
     </Flex>
   ) : null;

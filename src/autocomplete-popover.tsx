@@ -1,6 +1,7 @@
 import {
   Center,
   chakra,
+  PopoverAnchor,
   PopoverBodyProps,
   PopoverRoot,
   Spinner,
@@ -65,23 +66,25 @@ const baseStyles: PopoverBodyProps = {
   },
 };
 
-export type AutoCompletePopoverProps = PropsWithChildren<{}>;
+export type AutoCompletePopoverProps = PropsWithChildren<{
+  disabled?: boolean;
+}>;
 
 const AutoCompletePopoverRoot = forwardRef<
   AutoCompleteRefMethods,
   AutoCompletePopoverProps
->(({ children }, ref) => {
+>(({ children, disabled }, ref) => {
   const { isOpen, placement, autoCompleteProps } = useAutoCompleteContext();
 
   return (
     <PopoverRoot
-      open={isOpen}
+      open={!disabled && isOpen}
       autoFocus={false}
       positioning={{
         placement,
         sameWidth: autoCompleteProps.matchWidth ?? true,
       }}
-      present={isOpen}
+      present={!disabled && isOpen}
     >
       <chakra.div w="full" ref={ref}>
         {children}
@@ -91,8 +94,9 @@ const AutoCompletePopoverRoot = forwardRef<
 });
 
 export const AutoCompletePopover = {
-  List: AutoCompleteList,
   Root: AutoCompletePopoverRoot,
+  Anchor: PopoverAnchor,
+  List: AutoCompleteList,
 };
 
 AutoCompleteList.displayName = "AutoCompleteList";
