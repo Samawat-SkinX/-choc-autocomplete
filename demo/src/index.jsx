@@ -1,6 +1,11 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { createSystem, defaultConfig, defaultSystem, ChakraProvider } from "@chakra-ui/react";
+import {
+  createSystem,
+  defaultConfig,
+  defaultSystem,
+  ChakraProvider,
+} from "@chakra-ui/react";
 import { Provider } from "./components/ui/provider";
 import App from "./app";
 import { ColorModeProvider } from "./components/ui/color-mode";
@@ -30,10 +35,10 @@ const config = {
 const system = createSystem(defaultConfig, {
   theme: {
     tokens: {
-      colors: colors
-    }
-  }
-})
+      colors: colors,
+    },
+  },
+});
 
 createRoot(rootElement).render(
   <ChakraProvider value={system} enableSystem={false} defaultTheme="dark">

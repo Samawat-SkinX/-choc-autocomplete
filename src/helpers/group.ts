@@ -30,7 +30,7 @@ export const hasChildren = (children: any, filteredList: any[]) => {
         child.props?.getValue || getDefItemValue,
         child.props?.value || {}
       );
-      return filteredList.some(i => i.value === value);
+      return filteredList.some((i) => i.value === value);
     })
   );
 };

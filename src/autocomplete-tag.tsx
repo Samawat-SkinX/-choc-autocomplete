@@ -12,16 +12,16 @@ export const AutoCompleteTag = memo((props: AutoCompleteTagProps) => {
   const { label, onRemove, disabled, ...rest } = props;
 
   return (
-      <Tag
-        borderRadius="md"
-        fontWeight="normal"
-        closable
-        onClose={() => !disabled && runIfFn(onRemove)}
-        {...(disabled && disabledStyles)}
-        {...rest}
-      >
-        {label}
-      </Tag>
+    <Tag
+      borderRadius="md"
+      fontWeight="normal"
+      closable
+      onClose={() => !disabled && runIfFn(onRemove)}
+      {...(disabled && disabledStyles)}
+      {...rest}
+    >
+      {label}
+    </Tag>
   );
 });
 

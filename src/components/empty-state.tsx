@@ -3,13 +3,16 @@ import React from "react";
 import { useAutoCompleteContext } from "../autocomplete-context";
 
 export const EmptyState = (props: BoxProps) => {
-  const { getEmptyStateProps, defaultEmptyStateProps } = useAutoCompleteContext();
+  const { getEmptyStateProps, defaultEmptyStateProps } =
+    useAutoCompleteContext();
 
-  const emptyState = getEmptyStateProps(
-    <Flex {...emptyStyles} {...defaultEmptyStateProps}>No options found!</Flex>
+  const { emptyState, noSuggestions } = getEmptyStateProps(
+    <Flex {...emptyStyles} {...defaultEmptyStateProps}>
+      No options found!
+    </Flex>
   );
 
-  return <Box {...props}>{emptyState}</Box>;
+  return noSuggestions ? <Box {...props}>{emptyState}</Box> : null;
 };
 
 const emptyStyles: FlexProps = {

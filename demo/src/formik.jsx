@@ -1,10 +1,4 @@
-import {
-  Box,
-  Button,
-  Center,
-  Field, 
-  Heading,
-} from "@chakra-ui/react";
+import { Box, Button, Center, Field, Heading } from "@chakra-ui/react";
 import * as React from "react";
 import {
   AutoComplete,
@@ -25,14 +19,14 @@ const options = [
 
 function FormikExample() {
   const name = "team";
-  const onSubmit = data => console.log("data from form", data);
+  const onSubmit = (data) => console.log("data from form", data);
 
   return (
     <Box border="1px" borderRadius="1em" p={2}>
       <Heading as="h6" align="center">
         Formik
       </Heading>
-      <Formik onSubmit={onSubmit} initialValues={{ team: "one"}}>
+      <Formik onSubmit={onSubmit} initialValues={{ team: "one" }}>
         {({ handleSubmit, handleBlur, setFieldValue, ...other }) => (
           <>
             <Button onClick={() => setFieldValue("team", "four")}>
@@ -43,7 +37,7 @@ function FormikExample() {
               <Field.Root>
                 <Field.Label>Olympics Soccer Winner</Field.Label>
                 <AutoComplete
-                  onChange={val => setFieldValue("team", val)}
+                  onChange={(val) => setFieldValue("team", val)}
                   openOnFocus
                   rollNavigation
                   listAllValuesOnFocus
@@ -57,7 +51,7 @@ function FormikExample() {
                   />
                   <AutoCompleteList>
                     <AutoCompleteGroup>
-                      {options.map(option => (
+                      {options.map((option) => (
                         <AutoCompleteItem
                           key={`option-${option.value}`}
                           value={{

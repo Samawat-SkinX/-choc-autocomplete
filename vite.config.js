@@ -1,25 +1,26 @@
-import { defineConfig } from 'vite'
-import path from 'path';
-import react from '@vitejs/plugin-react';
-import dts from 'vite-plugin-dts';
-import tsConfigPaths from 'vite-tsconfig-paths';
+import { defineConfig } from "vite";
+import path from "path";
+import react from "@vitejs/plugin-react";
+import dts from "vite-plugin-dts";
+import tsConfigPaths from "vite-tsconfig-paths";
 
-import { peerDependencies as externals, name } from './package.json';
+import { peerDependencies as externals, name } from "./package.json";
 
 export default defineConfig(() => ({
   plugins: [
     react(),
     tsConfigPaths(),
     dts({
-      include: ['src/', 'src/components/'],
+      include: ["src/", "src/components/"],
     }),
   ],
   build: {
     lib: {
-      entry: path.resolve(__dirname, './src/index.tsx'),
+      entry: path.resolve(__dirname, "./src/index.tsx"),
       name,
-      fileName: (format) => (format === 'cjs' ? 'index.js' : `index.${format}.js`),
-      formats: ['cjs', 'es'],
+      fileName: (format) =>
+        format === "cjs" ? "index.js" : `index.${format}.js`,
+      formats: ["cjs", "es"],
     },
     rollupOptions: {
       external: ["react/jsx-runtime", ...Object.keys(externals)],

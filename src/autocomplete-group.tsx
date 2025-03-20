@@ -16,26 +16,27 @@ export interface AutoCompleteGroupProps extends BoxProps {
   dividerColor?: string;
 }
 
-export const AutoCompleteGroup = forwardRef<HTMLDivElement, AutoCompleteGroupProps>(
-  (props, ref) => {
-    const { children, showDivider, ...restProps } = props;
-    const rest = omit(restProps, ["groupSibling"] as any);
+export const AutoCompleteGroup = forwardRef<
+  HTMLDivElement,
+  AutoCompleteGroupProps
+>((props, ref) => {
+  const { children, showDivider, ...restProps } = props;
+  const rest = omit(restProps, ["groupSibling"] as any);
 
-    const { getGroupProps } = useAutoCompleteContext();
+  const { getGroupProps } = useAutoCompleteContext();
 
-    const { group } = getGroupProps(props);
+  const { group } = getGroupProps(props);
 
-    const dividerStyles = useDividerStyles(props);
+  const dividerStyles = useDividerStyles(props);
 
-    return (
-      <Box ref={ref} {...group} {...rest}>
-        <Separator {...dividerStyles.top} />
-        {children}
-        <Separator {...dividerStyles.bottom} />
-      </Box>
-    );
-  }
-);
+  return (
+    <Box ref={ref} {...group} {...rest}>
+      <Separator {...dividerStyles.top} />
+      {children}
+      <Separator {...dividerStyles.bottom} />
+    </Box>
+  );
+});
 
 export const AutoCompleteGroupTitle = forwardRef<HTMLDivElement, FlexProps>(
   (props, ref) => {

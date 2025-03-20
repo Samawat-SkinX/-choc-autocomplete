@@ -1,12 +1,9 @@
-import {
-  SystemStyleObject,
-  Flex,
-  FlexProps,
-} from "@chakra-ui/react";
+import { SystemStyleObject, Flex, FlexProps } from "@chakra-ui/react";
 import { isUndefined, omit, useMergeRefs } from "./utils";
-import { useEffect, useRef, forwardRef, } from "react";
+import { useEffect, useRef, forwardRef } from "react";
 
 import { useAutoCompleteContext } from "./autocomplete-context";
+import React from "react";
 
 export interface AutoCompleteItemProps extends FlexProps {
   value: any;
@@ -18,52 +15,50 @@ export interface AutoCompleteItemProps extends FlexProps {
   getValue?: (item: AutoCompleteItemProps["value"]) => any;
 }
 
-export const AutoCompleteItem = forwardRef<HTMLDivElement, AutoCompleteItemProps>(
-  (props, forwardedRef) => {
-    const {
-      focusedValue,
-      getItemProps,
-      interactionRef,
-    } = useAutoCompleteContext();
-    const itemRef = useRef<any>();
-    const ref = useMergeRefs(forwardedRef, itemRef);
+export const AutoCompleteItem = forwardRef<
+  HTMLDivElement,
+  AutoCompleteItemProps
+>((props, forwardedRef) => {
+  const { focusedValue, getItemProps, interactionRef } =
+    useAutoCompleteContext();
+  const itemRef = useRef<any>(null);
+  const ref = useMergeRefs(forwardedRef, itemRef);
 
-    const itemProps = getItemProps(props);
-    const { isValidSuggestion, value } = itemProps.root;
+  const itemProps = getItemProps(props);
+  const { isValidSuggestion, value } = itemProps.root;
 
-    const isFocused = focusedValue === value;
+  const isFocused = focusedValue === value;
 
-    useEffect(() => {
-      if (isFocused && interactionRef.current === "keyboard")
-        itemRef?.current?.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-        });
-    }, [isFocused, interactionRef]);
+  useEffect(() => {
+    if (isFocused && interactionRef.current === "keyboard")
+      itemRef?.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+  }, [isFocused, interactionRef]);
 
-    useEffect(() => {
-      if (typeof value !== "string") console.warn("wow");
-      if (typeof value !== "string" && isUndefined(props.getValue))
-        console.error(
-          "You must define the `getValue` prop, when an Item's value is not a string"
-        );
-    }, []);
+  useEffect(() => {
+    if (typeof value !== "string") console.warn("wow");
+    if (typeof value !== "string" && isUndefined(props.getValue))
+      console.error(
+        "You must define the `getValue` prop, when an Item's value is not a string"
+      );
+  }, []);
 
-    const { children, dangerouslySetInnerHTML, ...restProps } = itemProps.item;
+  const { children, dangerouslySetInnerHTML, ...restProps } = itemProps.item;
 
-    const rest = omit(restProps, ["groupId"] as any);
+  const rest = omit(restProps, ["groupId"] as any);
 
-    return isValidSuggestion ? (
-      <Flex ref={ref} {...baseItemStyles} {...rest}>
-        {children ? (
-          children
-        ) : (
-          <span dangerouslySetInnerHTML={dangerouslySetInnerHTML} />
-        )}
-      </Flex>
-    ) : null;
-  }
-);
+  return isValidSuggestion ? (
+    <Flex ref={ref} {...baseItemStyles} {...rest}>
+      {children ? (
+        children
+      ) : (
+        <span dangerouslySetInnerHTML={dangerouslySetInnerHTML} />
+      )}
+    </Flex>
+  ) : null;
+});
 
 AutoCompleteItem.displayName = "AutoCompleteItem";
 
