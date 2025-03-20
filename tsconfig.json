@@ -13,13 +13,14 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "declaration": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
+    "declaration": true,
     "declarationMap": true,
+    "declarationDir": "dist",
+    "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "@skinx/chakra-autocomplete": ["src/components/index.tsx"]
+      "@/*": ["src/*"]
     },
     "typeRoots": ["node_modules/@types", "src/components/index.d.ts"]
   }

@@ -2720,6 +2720,7 @@ __metadata:
     react-dom: "npm:^19.0.0"
     react-icons: "npm:^5.5.0"
     react-nanny: "npm:2.15.0"
+    rimraf: "npm:^5.0.6"
     size-limit: "npm:11.2.0"
     tsdx: "npm:^0.14.1"
     tslib: "npm:^2.8.1"
@@ -10941,7 +10942,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rimraf@npm:^5.0.5":
+"rimraf@npm:^5.0.5, rimraf@npm:^5.0.6":
   version: 5.0.10
   resolution: "rimraf@npm:5.0.10"
   dependencies:

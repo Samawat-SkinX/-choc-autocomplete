@@ -4,7 +4,11 @@ import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
 import tsConfigPaths from "vite-tsconfig-paths";
 
-import { peerDependencies as externals, name } from "./package.json";
+import {
+  peerDependencies as externals,
+  name,
+  dependencies,
+} from "./package.json";
 
 export default defineConfig(() => ({
   plugins: [
@@ -23,7 +27,29 @@ export default defineConfig(() => ({
       formats: ["cjs", "es"],
     },
     rollupOptions: {
-      external: ["react/jsx-runtime", ...Object.keys(externals)],
+      external: [
+        "react/jsx-runtime",
+        ...Object.keys(externals),
+        ...Object.keys(dependencies || {}),
+      ],
+    },
+    output: {
+      globals: {
+        react: "React",
+        "react-dom": "ReactDOM",
+        "react/jsx-runtime": "jsxRuntime",
+        "@chakra-ui/react": "ChakraUI",
+        "@emotion/react": "emotionReact",
+      },
+      preserveModules: false,
+    },
+    sourcemap: true,
+    emptyOutDir: true,
+    outDir: "dist",
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
+      },
     },
   },
 }));
