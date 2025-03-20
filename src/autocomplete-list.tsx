@@ -24,7 +24,7 @@ export const AutoCompleteList = forwardRef<
   const [autoCompleteItems, nonAutoCompleteItems] = siblingInfo(children);
 
   return (
-    <PopoverContent width="auto">
+    <PopoverContent>
       <PopoverBody ref={ref} w="inherit" {...baseStyles} {...rest}>
         {isLoading && <Center>{loadingState || <Spinner size="md" />}</Center>}
         {!isLoading && (
