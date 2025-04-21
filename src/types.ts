@@ -82,7 +82,11 @@ export type UseAutoCompleteProps = Partial<{
     tags: ItemTag[]
   ) => void;
   onReady: (params: OnReadyProps) => void;
-  openOnFocus: boolean;
+  openOnFocus:
+    | boolean
+    | {
+        onlyWhenMatch: boolean;
+      };
   placement: NonNullable<PopoverRootProps["positioning"]>["placement"];
   restoreOnBlurIfEmpty: boolean;
   rollNavigation: boolean;
@@ -92,6 +96,7 @@ export type UseAutoCompleteProps = Partial<{
   suggestWhenEmpty: boolean;
   value: Item["value"];
   values: Item["value"][];
+  fetchBehavior?: boolean;
 }>;
 
 export type ItemTag = { label: any; onRemove: () => void };

@@ -36,6 +36,18 @@
   </sup>
 </div>
 
+## How to dev using `yalc`
+
+- Initial
+  - run `yalc publish` in `@skinx/chakra-autocomplete`
+  - run `yalc add @skinx/chakra-autocomplete` in `skinx-website`
+  - run `yarn` once in skinx-website
+- For update
+  - run `yalc publish` in `@skinx/chakra-autocomplete`
+  - run `yalc update` in `skinx-website`
+- To remove
+  - run `yalc remove --all`
+
 ## Chakra V3 and V2 Support
 
 AutoComplete Version 6+ supports [Chakra UI V3](https://www.chakra-ui.com/).  If you are using [Chakra UI V2](https://v2.chakra-ui.com/), please continue to use the current choc-autocomplete v5.X.  We will continue to try and support Chakra V2 but will eventually be removed once V3 becomes more widely adopted.
@@ -46,7 +58,7 @@ The public API of the AutoComplete components have not changed with this migrati
 
 ## Known issues with Chakra V3
 
-There is only 1 known display issue with Chakra V3.  When using the `multiple` prop, it is no longer possible to replicate the same styling to the `Box` wrapper as what the underlying `Input` is using.  We are still looking into ways to resolve this, but neither the Chakra nor next-themes teams have published guidance on this yet. 
+There is only 1 known display issue with Chakra V3.  When using the `multiple` prop, it is no longer possible to replicate the same styling to the `Box` wrapper as what the underlying `Input` is using.  We are still looking into ways to resolve this, but neither the Chakra nor next-themes teams have published guidance on this yet.
 
 ## Install
 
@@ -311,7 +323,7 @@ The `onChange` prop now returns an array of the chosen `values`
 
 Now you can map the tags with the `AutoCompleteTag` component or any other component of your choice. The `label` and the `onRemove` method are now exposed.
 
-**Important** - With Chakra UI V3, it is no longer possible to replicate the same styling to the `Box` wrapper as what the underlying `Input` is using.  We are still looking into ways to resolve this, but neither the Chakra nor next-themes teams have published guidance on this yet. 
+**Important** - With Chakra UI V3, it is no longer possible to replicate the same styling to the `Box` wrapper as what the underlying `Input` is using.  We are still looking into ways to resolve this, but neither the Chakra nor next-themes teams have published guidance on this yet.
 
 ```js
 import React from "react";
@@ -637,6 +649,7 @@ boolean | MaybeRenderProp<{ value: Item["value"] }>
     isNewInput: boolean;
   }) => boolean | void
 ```
+
 </td>
             <td>method to call whenever a suggestion is selected</td>
             <td>&mdash;&mdash;&mdash;</td>
@@ -664,6 +677,7 @@ boolean | MaybeRenderProp<{ value: Item["value"] }>
 ```ts
 (props:{tags:ItemTag[]}) => void
 ```
+
 </td>
             <td>method that exposes variables used in component</td>
             <td>&mdash;&mdash;&mdash;</td>
@@ -675,6 +689,7 @@ boolean | MaybeRenderProp<{ value: Item["value"] }>
 ```ts
 (removedTag: Item["value"],item: Item, tags: Item["value"][]) => void
 ```
+
 </td>
             <td>method to call whenever a tag is removed</td>
             <td>&mdash;&mdash;&mdash;</td>
@@ -716,6 +731,7 @@ boolean | MaybeRenderProp<{ value: Item["value"] }>
 ```ts
 (value: string) => boolean
 ```
+
 </td>
             <td>function to decide if suggestions should render, e.g. show suggestions only if there are at least two characters in the query value</td>
             <td>&mdash;&mdash;&mdash;</td>

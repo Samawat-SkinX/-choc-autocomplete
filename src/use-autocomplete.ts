@@ -21,6 +21,7 @@ import {
   getDefItemValue,
   getFocusedStyles,
   getItemList,
+  handleOpenOnFocus,
   setEmphasis,
 } from "./helpers/items";
 import { Item, UseAutoCompleteReturn } from "./types";
@@ -67,6 +68,7 @@ export function useAutoComplete(
         ? [value]
         : [...value]
       : undefined,
+    fetchBehavior,
   } = autoCompleteProps;
 
   freeSolo = freeSolo ? freeSolo : multiple ? true : autoCompleteProps.freeSolo;
@@ -149,6 +151,29 @@ export function useAutoComplete(
       onClose();
     }
   }, [filteredList.length, emptyState, open]);
+
+  // handle open and close for fetch behavior
+  useEffect(() => {
+    if (!fetchBehavior) return;
+
+    // open suggest after fetches new value and there's matched value
+    if (
+      filteredList.length &&
+      !open &&
+      inputRef.current === document.activeElement &&
+      query !== ""
+    ) {
+      onOpen();
+    } else if (
+      // TODO: this will conflict with suggestWhenEmpty and maybe some other props
+      // but until those props are used this should be fine
+      (query === "" || filteredList.length === 0) &&
+      !emptyState &&
+      open
+    ) {
+      onClose();
+    }
+  }, [filteredList, query, fetchBehavior]);
 
   const [focusedValue, setFocusedValue] = useState<Item["value"]>(
     prefocusFirstItem ? itemList[0]?.value : null
@@ -294,7 +319,28 @@ export function useAutoComplete(
         isReadOnly,
         onFocus: (e) => {
           runIfFn(onFocus, e);
-          if (autoCompleteProps.openOnFocus && !isReadOnly) onOpen();
+          if (autoCompleteProps.openOnFocus && !isReadOnly) {
+            // handleOpenOnFocus(
+            //   autoCompleteProps.openOnFocus,
+            //   onOpen,
+            //   Boolean(query !== "" && filteredResults.length),
+            //   open
+            // );
+            // case run onOpen when focus
+            if (typeof autoCompleteProps.openOnFocus === "boolean") {
+              onOpen();
+              return;
+            }
+
+            // case run onOpen when focus if matched
+            if (
+              autoCompleteProps.openOnFocus?.onlyWhenMatch &&
+              Boolean(query !== "" && filteredResults.length)
+            ) {
+              onOpen();
+              return;
+            }
+          }
           if (autoCompleteProps.selectOnFocus) e.target.select();
           if (listAllValuesOnFocus) setListAll(true);
         },
@@ -327,10 +373,15 @@ export function useAutoComplete(
           const queryIsEmpty = isEmpty(newValue);
           if (
             runIfFn(shouldRenderSuggestions, newValue) &&
-            (!queryIsEmpty || suggestWhenEmpty)
-          )
+            (!queryIsEmpty || suggestWhenEmpty) &&
+            // skip handle open/close onChange if use fetchBehavior (since the results from fetching will be delayed)
+            // this is to avoid open and close in successions
+            !fetchBehavior
+          ) {
             onOpen();
-          else onClose();
+          } else if (!fetchBehavior) {
+            onClose();
+          }
           setListAll(false);
         },
         onKeyDown: (e) => {

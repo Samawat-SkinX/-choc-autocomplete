@@ -3,7 +3,7 @@ import { pick, isDefined, isEmpty } from "../utils";
 import { ReactNode } from "react";
 import { FlexProps } from "@chakra-ui/react";
 import { fuzzyScore } from "./fuzzySearch";
-import { Item } from "../types";
+import { Item, UseAutoCompleteProps } from "../types";
 import { AutoCompleteItemProps } from "../autocomplete-item";
 
 export const getDefItemValue = (item: AutoCompleteItemProps["value"]) =>
@@ -66,4 +66,23 @@ export const defaultFilterMethod = (
 
 function escapeRegex(string: string) {
   return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
+}
+
+export function handleOpenOnFocus(
+  openOnFocus: UseAutoCompleteProps["openOnFocus"],
+  onOpen: () => void,
+  hasMatch: boolean,
+  open: boolean
+) {
+  // case run onOpen when focus
+  if (typeof openOnFocus === "boolean") {
+    onOpen();
+    return;
+  }
+
+  // case run onOpen when focus if matched
+  if (openOnFocus?.onlyWhenMatch && hasMatch) {
+    onOpen();
+    return;
+  }
 }

@@ -52,13 +52,13 @@ const AutoCompleteDrawerList = ({
   loadingState,
   children,
 }: AutoCompleteDrawerListProps) => {
-  const { isLoading } = useAutoCompleteContext();
+  const { isLoading, isOpen } = useAutoCompleteContext();
   const [autoCompleteItems, nonAutoCompleteItems] = siblingInfo(children);
 
   return (
     <Drawer.Body>
       {isLoading && <Center>{loadingState || <Spinner size="md" />}</Center>}
-      {!isLoading && (
+      {!isLoading && isOpen && (
         <>
           {autoCompleteItems}
           <EmptyState />
